@@ -46,22 +46,32 @@ class MyApp(QWidget):
       btn9 = QPushButton('9', self)
       btn9.move(160, 160)
       btn9.resize(50, 50)   
-      
+
+      btn0 = QPushButton(self)
+      btn0.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
+         "QPushButton:hover{border-image: url(./1.png)}" 
+         "QPushButton:pressed{border-image: url(./1.png)}")
+      btn0.move(90, 20)
+      btn0.resize(50, 50)
+      btn0.clicked.connect(QCoreApplication.instance().quit)   
+
       self.setWindowTitle('DuDeoJi')
       self.setGeometry(300, 300, 230, 230)
       self.show()
 
-      btn0 = QPushButton(self)
-      btn0.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
-         #"QPushButton:hover{border-image: url(./1.png)}" 
-         #"QPushButton:pressed{border-image: url(./1.png)}")
-      btn0.move(90, 20)
-      btn0.resize(50, 50)
-      btn0.clicked.connect(QCoreApplication.instance().quit)
-      self.show()
+      btn10 = QPushButton(self)
+      btn10.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
+         "QPushButton:hover{border-image: url(./1.png)}" 
+         "QPushButton:pressed{border-image: url(./1.png)}")
+      btn10.move(160, 20)
+      btn10.resize(50, 50)
+      btn10.clicked.connect(QCoreApplication.instance().quit)   
 
+      self.setWindowTitle('DuDeoJi')
+      self.setGeometry(300, 300, 230, 230)
+      self.update()
 
-
+test = MyApp()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
