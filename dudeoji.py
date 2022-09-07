@@ -11,6 +11,10 @@ class MyApp(QWidget):
       self.initUI()
 
   def initUI(self):
+      self.timer = QTimer(self)
+      self.timer.start(500)
+      self.timer.timeout.connect(self.timeout_run)
+
       btn1 = QPushButton('1', self)
       btn1.move(20, 20)
       btn1.resize(50, 50)           
@@ -59,19 +63,21 @@ class MyApp(QWidget):
       self.setGeometry(300, 300, 230, 230)
       self.show()
 
-      btn10 = QPushButton(self)
-      btn10.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-         "QPushButton:hover{border-image: url(./1.png)}" 
-         "QPushButton:pressed{border-image: url(./1.png)}")
-      btn10.move(160, 20)
-      btn10.resize(50, 50)
-      btn10.clicked.connect(QCoreApplication.instance().quit)   
+         
 
       self.setWindowTitle('DuDeoJi')
       self.setGeometry(300, 300, 230, 230)
       self.update()
 
-test = MyApp()
+  def timeout_run(self):
+        btn10 = QPushButton(self)
+        btn10.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
+            "QPushButton:hover{border-image: url(./1.png)}" 
+            "QPushButton:pressed{border-image: url(./1.png)}")
+        btn10.move(160, 20)
+        btn10.resize(50, 50)
+        btn10.clicked.connect(QCoreApplication.instance().quit)
+        self.update()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
