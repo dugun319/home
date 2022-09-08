@@ -15,29 +15,30 @@ class MainWindow(QWidget):
 
     def initUI(self):
         # 윈도우 설정
-        self.setGeometry(300, 300, 300, 200)  # x, y, w, h
+        self.setGeometry(300, 300, 500, 500)  # x, y, w, h
         self.setWindowTitle('QPaint Move')
 
         # Timer 설정
         self.timer = QTimer(self)
-        self.timer.start(1000/30)
+        self.timer.start(1000)
         self.timer.timeout.connect(self.timeout_run)
 
         # 창닫기 버튼
         btn = QPushButton('Quit', self)
-        btn.move(self.width() / 2 - 40, self.height() / 2 + 50)
+        btn.move(5, 5)
         btn.resize(btn.sizeHint())
         btn.clicked.connect(QCoreApplication.instance().quit)
 
-    def paintEvent(self, e):
-        qp = QPainter()
-        qp.begin(self)
+    def paintEvent(self, event):
+        #qp = QPainter()
+        qp = QPushButton('TEST', self)
         self.draw_point(qp)
-        qp.end()
 
     def draw_point(self, qp):
-        qp.setPen(QPen(Qt.blue, 8))
-        qp.drawPoint(self.pos_x, self.height() / 2)
+        qp.move(50, 50)
+        #qp.setPen(QPen(Qt.blue, 8))
+        #qp.drawPoint(self.pos_x, 400)
+        
 
     def timeout_run(self):
         if self.pos_x < 0 or self.pos_x > self.width() - 8:
