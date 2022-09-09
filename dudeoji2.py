@@ -26,10 +26,10 @@ class MyApp(QWidget):
         self.total_hit = 0
 
     def initUI(self):
-        # set timer / interval 800ms ~ 1400ms       
+        # set timer / interval 1000ms ~ 2000ms       
         self.timer = QTimer(self)
         self.timer.start()
-        self.timer.setInterval(random.choice([800, 1100, 1400]))
+        self.timer.setInterval(random.choice([1000, 1500, 2000]))
         self.timer.timeout.connect(self.timeout_run)
     
          # drawing Ten background buttons
@@ -123,75 +123,66 @@ class MyApp(QWidget):
             if self.pos_x == 20:
                 self.act_btn_number = 1
                 self.btn1.setEnabled(True)
-                self.btn1.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn1.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+                    #"QPushButton:hover{border-image: url(./ddj.png)}" 
+                    #"QPushButton:pressed{border-image: url(./ddj.png)}")
             elif self.pos_x == 90:
                 self.act_btn_number = 2
                 self.btn2.setEnabled(True)
-                self.btn2.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn2.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
             else:
                 self.act_btn_number = 3
                 self.btn3.setEnabled(True)
-                self.btn3.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn3.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
         elif self.pos_y == 90:
             if self.pos_x == 20:
                 self.act_btn_number = 4
                 self.btn4.setEnabled(True)
-                self.btn4.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn4.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
             elif self.pos_x == 90:
                 self.act_btn_number = 5
                 self.btn5.setEnabled(True)
-                self.btn5.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn5.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
             else:
                 self.act_btn_number = 6
                 self.btn6.setEnabled(True)
-                self.btn6.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn6.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
         else:
             if self.pos_x == 20:
                 self.act_btn_number = 7
                 self.btn7.setEnabled(True)
-                self.btn7.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn7.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
             elif self.pos_x == 90:
                 self.act_btn_number = 8
                 self.btn8.setEnabled(True)
-                self.btn8.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn8.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
+
             else:
                 self.act_btn_number = 9
                 self.btn9.setEnabled(True)
-                self.btn9.setStyleSheet("QPushButton{border-image: url(./ddj.png)}"
-                    "QPushButton:hover{border-image: url(./ddj.png)}" 
-                    "QPushButton:pressed{border-image: url(./ddj.png)}")
+                self.btn9.setStyleSheet("QPushButton{border-image: url(./ddj.png)}")
 
         print("act_btn_number = ", self.act_btn_number)
 
         # number of repetitions
-
         self.count += 1
+        
         if self.count == 10:
-            print("Total Score = ", self.total_hit * 10)
             self.timer.stop()
 
         self.btn0.setText("")
 
         self.update()
 
-    def btnRun_clicked(self, push_btn_number):
 
+    def btnRun_clicked(self, push_btn_number):
+        # Hit message
         str_yelling = random.choice(["AYA!", "TTaelyeola!", "TTottaelyeo!"])
         self.btn0.setText(str_yelling)
 
@@ -201,6 +192,14 @@ class MyApp(QWidget):
 
         self.total_hit += 1
 
+        self.btn_eraser()
+
+        self.print_score()
+
+
+    def btn_eraser(self):
+
+        # button erase
         self.btn1.setEnabled(False)
         self.btn1.setStyleSheet("")
         self.btn2.setEnabled(False)
@@ -219,7 +218,7 @@ class MyApp(QWidget):
         self.btn8.setStyleSheet("")
         self.btn9.setEnabled(False)
         self.btn9.setStyleSheet("")
-        self.print_score()
+
 
     def print_score(self):
         if self.count == 10:
@@ -228,7 +227,6 @@ class MyApp(QWidget):
             self.btn0.setFont(font_size)
             str_score = "Your score is " + str(self.total_hit*10)
             self.btn0.setText(str_score)
-
 
 
 if __name__ == '__main__':
