@@ -29,6 +29,10 @@ void fillLine(int n = 25, std::string c = "*") {
     std::cout<<std::endl;
 }
 
+int sum(int a, int b = 10) {
+    return a + b;
+}
+
 int main() {
     fillLine();
     fillLine(10, "%");
@@ -43,4 +47,8 @@ int main() {
 
     delete v1;
     delete v2;
+
+    std::cout<<"sum(5)\t\t= "<<sum(5)<<std::endl;
+    std::cout<<"sum(5, 10)\t= "<<sum(5, 10)<<std::endl;
+
 }
